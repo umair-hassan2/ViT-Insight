@@ -24,64 +24,50 @@ The rollout progressively multiplies attention matrices across layers to trace h
 
 ### Notation
 
-* `A^(l)` = attention matrix at layer *l* (per head)
-* `A¯(l)` = average attention across heads at layer *l*
-* `Ã(l)` = attention matrix after adding residuals
-* `R^(l)` = rollout matrix up to layer *l*
-* `I` = identity matrix
-* `α` = residual scaling factor (usually `1`)
+* ![eq_a](https://quicklatex.com/cache3/c7/ql_36269e6e845c142142517c24f24383c7_l3.png) = attention matrix at layer *l* (per head)  
+* ![eq_b](https://quicklatex.com/cache3/ee/ql_704108d56a49b7ae3c1cd1c7aaf203ee_l3.png) = average attention across heads at layer *l*  
+* ![eq_c](https://quicklatex.com/cache3/fc/ql_838468c12ff5fd3709898d1d50ff67fc_l3.png) = attention matrix after adding residuals  
+* ![eq_d](https://quicklatex.com/cache3/65/ql_2bf949f7a1b1cc1e98ba112287191265_l3.png) = rollout matrix up to layer *l*  
+* ![eq_e](https://quicklatex.com/cache3/02/ql_b80b96d2c3f785e26e8688a0968e9402_l3.png) = identity matrix  
+* ![eq_f](https://quicklatex.com/cache3/25/ql_f212e665f290020b3d06b5a7b6eea825_l3.png) = residual scaling factor (usually 1)
 
 ---
 
 ### Step 1: Average attention across heads
-
-```
-A¯(l) = (1 / H) * Σ(h=1→H) A_h(l)
-```
+![eq_1](https://quicklatex.com/cache3/c8/ql_7a185ae6a6394d5b525d48af33bbc4c8_l3.png)
 
 ### Step 2: Add identity (residual connection effect)
 
-```
-Ã(l) = αI + (1 − α) * A¯(l)
-```
+![eq_2](https://quicklatex.com/cache3/34/ql_97a71a469aa24769204766bcf0ef3534_l3.png)
 
 ### Step 3: Recursive rollout definition
 
-```
-R^(l) = Ã(l) * R^(l−1)
-R^(0) = I
-```
+![eq_3](https://quicklatex.com/cache3/c7/ql_d88420789066fdbf504dd1d898883ec7_l3.png)
 
 ### Final rollout (after L layers)
 
-```
-R^(L) = Ã(L) * Ã(L−1) * ... * Ã(1)
-```
+![eq_4](https://quicklatex.com/cache3/58/ql_9f971915eb569ee2105c0369e9aace58_l3.png)
 
-* `R^(L)` highlights **which input patches influence the `[CLS]` token** the most.
+* ![eq_5](https://quicklatex.com/cache3/8b/ql_53e973516ffc6cddef0694854f00c78b_l3.png) highlights **which input patches influence the `[CLS]` token** the most.
 
 ---
 
 ## 📊 Layer-wise Visualization
 
-1. **Patch embeddings per layer:**
-   Extract per-layer patch embeddings from ViT and normalize them.
-   ```
-    A¯(l) = (1 / H) * Σ(h=1→H) A_h(l)
-    ```
+1. **Patch embeddings per layer:**  
+   Extract per-layer patch embeddings from ViT and normalize them.  
+   ![eq_6](https://quicklatex.com/cache3/70/ql_7e1d57325bb83c75bbf237256a752370_l3.png)
 
 2. **Overlay heatmaps:**
-
-   * Red = strong match to label / high attention
-   * Blue = weak match
+   * Red = strong match to label / high attention  
+   * Blue = weak match  
    * Adjustable alpha and colormap for better visualization
 
 3. **Dynamic GIF:**
-
-   * Shows attention evolution across layers
+   * Shows attention evolution across layers  
    * Optional per-layer snapshots for deep inspection
 
-4. **Layer range selection:**
+4. **Layer range selection:**  
    Allows users to focus on a subset of layers for analysis instead of all layers.
 
 ---
