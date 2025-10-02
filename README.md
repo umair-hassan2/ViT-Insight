@@ -22,33 +22,8 @@ It helps interpret **how information flows across layers, heads, and tokens** (e
 
 The rollout progressively multiplies attention matrices across layers to trace how much each input patch contributes to the final `[CLS]` decision.
 
-### Notation
+<img width="646" height="641" alt="Screenshot 2025-10-02 at 11 07 43 PM" src="https://github.com/user-attachments/assets/8c5c1a60-408d-46d1-8031-5fd110c7e286" />
 
-* ![eq_a](https://quicklatex.com/cache3/c7/ql_36269e6e845c142142517c24f24383c7_l3.png) = attention matrix at layer *l* (per head)  
-* ![eq_b](https://quicklatex.com/cache3/ee/ql_704108d56a49b7ae3c1cd1c7aaf203ee_l3.png) = average attention across heads at layer *l*  
-* ![eq_c](https://quicklatex.com/cache3/fc/ql_838468c12ff5fd3709898d1d50ff67fc_l3.png) = attention matrix after adding residuals  
-* ![eq_d](https://quicklatex.com/cache3/65/ql_2bf949f7a1b1cc1e98ba112287191265_l3.png) = rollout matrix up to layer *l*  
-* ![eq_e](https://quicklatex.com/cache3/02/ql_b80b96d2c3f785e26e8688a0968e9402_l3.png) = identity matrix  
-* ![eq_f](https://quicklatex.com/cache3/25/ql_f212e665f290020b3d06b5a7b6eea825_l3.png) = residual scaling factor (usually 1)
-
----
-
-### Step 1: Average attention across heads
-![eq_1](https://quicklatex.com/cache3/c8/ql_7a185ae6a6394d5b525d48af33bbc4c8_l3.png)
-
-### Step 2: Add identity (residual connection effect)
-
-![eq_2](https://quicklatex.com/cache3/34/ql_97a71a469aa24769204766bcf0ef3534_l3.png)
-
-### Step 3: Recursive rollout definition
-
-![eq_3](https://quicklatex.com/cache3/c7/ql_d88420789066fdbf504dd1d898883ec7_l3.png)
-
-### Final rollout (after L layers)
-
-![eq_4](https://quicklatex.com/cache3/58/ql_9f971915eb569ee2105c0369e9aace58_l3.png)
-
-* ![eq_5](https://quicklatex.com/cache3/8b/ql_53e973516ffc6cddef0694854f00c78b_l3.png) highlights **which input patches influence the `[CLS]` token** the most.
 
 ---
 
