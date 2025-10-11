@@ -82,7 +82,7 @@ def generate_attention_frames(img, attentions, mode="Per-layer GIF", alpha=0.5, 
     tmp_gif = tempfile.NamedTemporaryFile(delete=False, suffix=".gif")
     # Ensure at least one frame exists
     if len(frames) == 1:
-        frames[0].save(tmp_gif.name, format='GIF', save_all=True, duration=400)
+        frames[0].save(tmp_gif.name, format='GIF', save_all=True, duration=400, loop=0)
     else:
-        frames[0].save(tmp_gif.name, format='GIF', append_images=frames[1:], save_all=True, duration=400)
+        frames[0].save(tmp_gif.name, format='GIF', append_images=frames[1:], save_all=True, duration=400, loop=0)
     return tmp_gif.name
