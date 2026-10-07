@@ -1,9 +1,0 @@
-models:
-  - name: "CLIP (ViT-B/32)"
-    id: "openai/clip-vit-base-patch32"
-    model_type: "text-based"
-    hidden_layers: 12
-  - name: "Google ViT"
-    id: "google/vit-base-patch16-224"
-    model_type: "image-based"
-    hidden_layers: 12

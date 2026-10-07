@@ -1,0 +1,70 @@
+# One entry per supported checkpoint. prefix_tokens = non-patch tokens that
+# precede the patch grid in the sequence (CLS, distillation, registers).
+models:
+  - id: google/vit-base-patch16-224
+    name: ViT-B/16 (supervised, IN-21k→1k)
+    family: vit
+    objective: supervised
+    prefix_tokens: 1
+    patch_size: 16
+    num_layers: 12
+  - id: timm/vit_base_patch16_224.augreg2_in21k_ft_in1k
+    name: ViT-B/16 AugReg (supervised)
+    family: vit
+    objective: supervised
+    prefix_tokens: 1
+    patch_size: 16
+    num_layers: 12
+  - id: facebook/deit-base-distilled-patch16-224
+    name: DeiT-B/16 distilled (supervised)
+    family: deit
+    objective: supervised+distill
+    prefix_tokens: 2
+    patch_size: 16
+    num_layers: 12
+  - id: openai/clip-vit-base-patch16
+    name: CLIP ViT-B/16
+    family: clip
+    objective: contrastive
+    prefix_tokens: 1
+    patch_size: 16
+    num_layers: 12
+    text_conditioned: true
+  - id: openai/clip-vit-base-patch32
+    name: CLIP ViT-B/32
+    family: clip
+    objective: contrastive
+    prefix_tokens: 1
+    patch_size: 32
+    num_layers: 12
+    text_conditioned: true
+  - id: facebook/dino-vitb16
+    name: DINO ViT-B/16 (self-supervised)
+    family: dino
+    objective: self-supervised
+    prefix_tokens: 1
+    patch_size: 16
+    num_layers: 12
+  - id: facebook/dinov2-base
+    name: DINOv2-B/14 (self-supervised)
+    family: dinov2
+    objective: self-supervised
+    prefix_tokens: 1
+    patch_size: 14
+    num_layers: 12
+  - id: facebook/dinov2-with-registers-base
+    name: DINOv2-B/14 + 4 registers
+    family: dinov2
+    objective: self-supervised+registers
+    prefix_tokens: 5
+    patch_size: 14
+    num_layers: 12
+  - id: google/siglip-base-patch16-224
+    name: SigLIP-B/16 (no CLS; attention pooling)
+    family: siglip
+    objective: sigmoid-contrastive
+    prefix_tokens: 0
+    patch_size: 16
+    num_layers: 12
+    text_conditioned: true
+    cls_attention: false
