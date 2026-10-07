@@ -6,22 +6,49 @@ self-supervised (DINO, DINOv2 ± registers) ViTs through a Python API, a CLI and
 
 Research plan and roadmap: [`docs/RESEARCH-PLAN.md`](docs/RESEARCH-PLAN.md).
 
-## Install
+## Getting started (run the app locally)
 
-```bash
-git clone https://github.com/umair-hassan2/ViT-Insight.git && cd ViT-Insight
-uv sync --extra app          # or: pip install -e ".[app]"
-```
+Requires Python ≥3.10 and either [`uv`](https://docs.astral.sh/uv/) (recommended) or `pip`.
 
-## Use
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/umair-hassan2/ViT-Insight.git
+   cd ViT-Insight
+   ```
+
+2. **Install dependencies**
+   ```bash
+   uv sync --extra app
+   # or, without uv:
+   pip install -e ".[app]"
+   ```
+
+3. **Run the Gradio app**
+   ```bash
+   uv run python app/gradio_app.py
+   # or, without uv (inside the environment pip installed into):
+   python app/gradio_app.py
+   ```
+
+4. **Open the app** at http://127.0.0.1:7860
+   - Pick a model from the dropdown (e.g. `google/vit-base-patch16-224`).
+   - Upload an image.
+   - For CLIP/SigLIP models, enter 1–5 comma-separated text labels.
+   - Choose a view (**Attention Rollout**, **Per-layer GIF**, or **Head grid**) and click **Explain**.
+
+The first run for a given model downloads its weights from Hugging Face and caches them under
+`~/.cache/huggingface`, so it is slower than later runs.
+
+## Use from the command line
 
 ```bash
 uv run vit-insight models                                   # list supported checkpoints
 uv run vit-insight explain --model google/vit-base-patch16-224 --image cat.jpg --gif layers.gif
 uv run vit-insight explain --model openai/clip-vit-base-patch16 --image cat.jpg \
     --labels "a photo of a cat,a photo of a dog" --head-fusion max --discard-ratio 0.9
-uv run python app/gradio_app.py                             # http://127.0.0.1:7860
 ```
+
+## Use as a library
 
 ```python
 from PIL import Image
