@@ -146,9 +146,14 @@ Thumbs.db
 data/
 datasets/
 *.csv
-*.json
+# *.json (kept: JSON configs may be committed)
 *.parquet
 
 # Logs
 logs/
 *.log
+
+# uv / outputs
+.venv/
+*.gif
+outputs/

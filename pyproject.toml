@@ -1,0 +1,41 @@
+[project]
+name = "vit-insight"
+version = "0.2.0"
+description = "Interpretability toolkit and benchmark for attention-based explanations in Vision Transformers"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Umair Hassan" }]
+requires-python = ">=3.10"
+dependencies = [
+    "torch>=2.4",
+    "torchvision>=0.19",
+    "transformers>=4.46,<6",
+    "numpy>=1.26",
+    "pillow>=10",
+    "matplotlib>=3.8",
+    "pyyaml>=6",
+]
+
+[project.optional-dependencies]
+app = ["gradio>=5,<7"]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[project.scripts]
+vit-insight = "vit_insight.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["vit_insight"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

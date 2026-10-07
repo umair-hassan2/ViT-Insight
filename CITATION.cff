@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use ViT-Insight, please cite it."
+title: "ViT-Insight: interpretability toolkit and benchmark for attention-based explanations in Vision Transformers"
+authors:
+  - family-names: Hassan
+    given-names: Umair
+version: 0.2.0
+date-released: 2026-10-08
+repository-code: https://github.com/umair-hassan2/ViT-Insight
+license: MIT
